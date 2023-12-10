@@ -27,10 +27,43 @@ There are two main functions in the `Net-NPMLE` package, which is detailed speci
 - `Net_NPMLE` aims to give out Net-NPMLE estimator in uni-variate mixture model. Currently Net-NPMLE supports mixutre models such as Gaussian-location, Poisson-mixture, Lognormal-location, Gumbel-location, Gaussian-scale, Binomial-prob.
 - `Net_NPMLE2` provides bi-variate Net-NPMLE estimator in bi-variate mixture model. Currently bi-variate Net-NPMLE supports Gaussian location-scale mixture model.
 
-#### Example: Lognormal-location (Beta) mixture.
-As a simple example of `NetNPMLE` pacakge, we consider a Lognorm-location mixture: $\mathbf{Y} \mid \theta \sim \text{Log-normal}(\theta, 1/5) \text{ and }  \theta \sim \text{Beta}(3,2)$ where latent distribution follows $\text{Beta}(3,2)$ have a support of $[0,1]$.
+#### Example (1) : Lognormal-location (Beta) mixture.
+As a simple example of `NetNPMLE` pacakge, we consider a Lognorm-location mixture: $\mathbf{Y} \mid \theta \sim \text{Log-normal}(\theta, 1/5) \text{ and }  \theta \sim \text{Beta}(3,2)$ where latent distribution follows $\text{Beta}(3,2)$ have a support of $[0,1]$ and $n=2,000$.
 
-![Alt text](Image/)
+```{r, eval=FALSE}
+Seed <- 128783;set.seed(Seed);dist <- "LogGaussian";param <- 0.2
+n <- 2000;L <- 5;num_it <- 4000;n_grid <- 100
+theta <- rbeta(n, 3, 2);Y = rlnorm(n, theta, param)
+net_npmle <- Net_NPMLE(Y=Y, param=param, dist=dist, n=n, num_it=num_it, n_grid=n_grid)
+plot(net_npmle$support, net_npmle$prob, col=rgb(1,0,0,0.8), type='l',
+     xlab='support', ylab='mass', lwd=3, ylim=c(0, 0.5), cex.axis=1.85, cex.lab=1.85)
+```
+
+![Alt text](Image/lognormal-beta.png)
+
+
+#### Example (2) : Gaussian-location (Uniform) mixture.
+Here we also consider [Efron's](https://github.com/bnaras/deconvolveR/) $\widehat{g}$ estimator in a Gaussian-location (Uniform) mixutre: $\mathbf{Y} \mid \theta \sim \mathcal{N}(\theta,1) \text{ and } \theta \sim \mathcal{U}\text{nif}(-2,2)$ where $n=2,000$.
+
+```{r, eval=FALSE}
+Seed <- 128783;set.seed(Seed);dist <- "Gaussian";param <- 1.0
+n <- 2000;L <- 5;num_it <- 4000;n_grid <- 100
+theta <- runif(n, -2, 2);Y = theta + rnorm(n, 0, param)
+net_npmle <- Net_NPMLE(Y=Y, param=param, dist=dist, n=n, num_it=num_it, n_grid=n_grid)
+plot(net_npmle$support, net_npmle$prob, col=rgb(1,0,0,0.8), type='l',
+     xlab='support', ylab='mass', lwd=3, ylim=c(0,0.2), cex.axis=1.85, cex.lab=1.85)
+efnpmle = deconvolveR::deconv(tau=net_npmle$support, X=Y, deltaAt=0, family="Normal", pDegree=5, c0=1.0)
+efnpmle20 = deconvolveR::deconv(tau=net_npmle$support, X=Y, deltaAt=0, family="Normal", pDegree=20, c0=0.5)
+lines(net_npmle$support, efnpmle$stats[,"g"], type="l", xlab="", ylab="", col=rgb(0,0.5,0.5), lty=1, lwd=2)
+lines(net_npmle$support, efnpmle20$stats[,"g"], type="l", xlab="", ylab="", col=rgb(0,0,1), lty=1, lwd=2)
+legend("topright", c("Net-NPMLE","Efron(5)","Efron(20)"),
+        col=c(rgb(1,0,0),rgb(0,0.5,0.5),rgb(0,0,1)), lty=c(1,1,1),
+        lwd=c(3,2,2,2,2), bty="n", cex=1.0, x.intersp=0.8, y.intersp=0.8)
+```
+
+![Alt text](Image/gaussian-uniform.png)
+
+#### Example (3) : Gaussian-location (Uniform) mixture.
 
 
 
