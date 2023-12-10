@@ -1,4 +1,4 @@
-# GMS
+# NetNPMLE
 An R package for implementing Neural-Network based NPMLE, _Net-NPMLE_ in short.
 
 ## Abstract 
@@ -27,8 +27,10 @@ There are two main functions in the `Net-NPMLE` package, which is detailed speci
 - `Net_NPMLE` aims to give out Net-NPMLE estimator in uni-variate mixture model. Currently Net-NPMLE supports mixutre models such as Gaussian-location, Poisson-mixture, Lognormal-location, Gumbel-location, Gaussian-scale, Binomial-prob.
 - `Net_NPMLE2` provides bi-variate Net-NPMLE estimator in bi-variate mixture model. Currently bi-variate Net-NPMLE supports Gaussian location-scale mixture model.
 
-### Example: Lognormal-location (Beta) mixture.
+#### Example: Lognormal-location (Beta) mixture.
 As a simple example of `NetNPMLE` pacakge, we consider a Lognorm-location mixture: $\mathbf{Y} \mid \theta \sim \text{Log-normal}(\theta, 1/5) \text{ and }  \theta \sim \text{Beta}(3,2)$ where latent distribution follows $\text{Beta}(3,2)$ have a support of $[0,1]$.
+
+![Alt text](Image/)
 
 
 
