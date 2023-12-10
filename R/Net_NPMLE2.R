@@ -111,6 +111,7 @@ Net_NPMLE2 <- function(X=NULL, Y, param=0, dist=NULL, hidden_size=500,
     Sigma <- (Mu-mean(Y))^2 + apply((Y-Mu)^2 ,1, mean)
     mu1 <- min(Mu);mu2 <- max(Mu)
     sigma1 <- sqrt(min(Sigma));sigma2 <- sqrt(max(Sigma))
+    if(sigma2 > 4){sigma2 <- 4}
 
     y1 <- r_to_py(Y, convert=FALSE)
     X1 <- r_to_py(X, convert=FALSE)
