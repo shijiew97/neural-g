@@ -42,7 +42,7 @@
 #' theta <- rbeta(n, 3, 2);Y = rlnorm(n, theta, param)
 #' net_npmle <- Net_NPMLE(Y=Y, param=param, dist=dist, n=n, num_it=num_it, n_grid=n_grid)
 #' plot(net_npmle$support, net_npmle$prob, col=rgb(1,0,0,0.8), type='l',
-#'      xlab='support', ylab='mass', lwd=3, ylim=c(0, 0.5), cex.axis=1.85)
+#'      xlab='support', ylab='mass', lwd=3, ylim=c(0, 0.5), cex.axis=1.85, cex.lab=1.85)
 #' ### Gaussian-uniform
 #' Seed <- 128783;set.seed(Seed);dist <- "Gaussian";param <- 1.0
 #' n <- 2000;L <- 5;num_it <- 4000;n_grid <- 100
