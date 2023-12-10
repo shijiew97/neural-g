@@ -90,6 +90,9 @@ legend(x=2.0, y=0.385, c(expression(mu),expression(sigma^2)),
        bty="n", x.intersp=0.5, y.intersp=0.8, seg.len=1.0, cex=1.85)
 ```
 
+![Alt text](Image/gaussian2smooth.png)
+
+
 
 
 
