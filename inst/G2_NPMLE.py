@@ -186,7 +186,7 @@ def G2_NPMLE(y, X, hidden_size1, gpu_ind1, L1, n1, p1, n01,
         #support2 = torch.linspace(0.000000000001, 3, n_grid)
         #support = support.to(device)
         support1 = torch.linspace(mu1, -mu1, n_grid)
-        support2 = torch.linspace(0.000000000001, 5, n_grid)
+        support2 = torch.linspace(0.000000000001, sigma2, n_grid)
         support = torch.tensor(list(product(support1, support2)))
         support = support.to(device).view(n_grid**2, 2)
     if dist == "Gaussian-fram":
