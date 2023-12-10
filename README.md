@@ -63,7 +63,32 @@ legend("topright", c("Net-NPMLE","Efron(5)","Efron(20)"),
 
 ![Alt text](Image/gaussian-uniform.png)
 
-#### Example (3) : Gaussian-location (Uniform) mixture.
+#### Example (3) : Bi-variate Gaussian location-scale mixture
+In this case, we explore the application of bi-variate Net-NPMLE in a Gaussion location-scale mixture model: $\pi(\mu,\sigma^2) \sim \text{Normal-inverse-gamma}(\mu=1,\sigma=1,\text{shape}=2,\text{scale}=0.5)$.
+
+```{r, eval=FALSE}
+Seed <- 128783;set.seed(Seed);dist <- "Gaussian2s";param <- 0.5
+n <- 1000;L <- 5;num_it <- 4000;n_grid <- 50;p <- 2
+mu <- 1;sigma <- 1; shape <- 2;scale <- 0.5
+Y <- matrix(0, n, p)
+theta1 <- MCMCpack::rinvgamma(n, shape, scale)
+theta2 <- rnorm(n, mu, sd = sqrt(theta1 * sigma^2))
+for(i in 1:n){Y[i,] <- theta2[i]+theta1[i]*rnorm(p)}
+net_npmle <- Net_NPMLE2(Y=Y, param=param, dist=dist, n=n, num_it=num_it, n_grid=n_grid, p=p)
+mu_support <- unique(net_npmle$support[,1])
+sig_support <- unique(net_npmle$support[,2])
+mu_prob <- rep(0, n_grid);sigma_prob <- rep(0, n_grid)
+for(i in 1:n_grid){
+     mu_prob[i] <- sum( net_npmle$prob[net_npmle$support[,1]==mu_support[i]] )
+     sigma_prob[i] <- sum( net_npmle$prob[net_npmle$support[,2]==sig_support[i]] )
+}
+plot(mu_support, mu_prob, col=rgb(1,0,0,0.8), type='l', xlim=c(-3,4),
+     xlab='support', ylab='mass', lwd=3, ylim=c(0,0.35), cex.axis=1.85, cex.lab=1.85)
+lines(sig_support, sigma_prob, col=rgb(0,0,1,0.8), type='l', lwd=3, lty=2)
+legend(x=2.0, y=0.385, c(expression(mu),expression(sigma^2)),
+       col=c(rgb(1,0,0),rgb(0,0,1)), lty=c(1,2), lwd=c(3,3),
+       bty="n", x.intersp=0.5, y.intersp=0.8, seg.len=1.0, cex=1.85)
+```
 
 
 
