@@ -16,7 +16,7 @@ install.package("reticulate")
 install.package("devtools")
 ```
 
-Now, use the following code to install `GMS` package.
+Now, use the following code to install `NetNPMLE` package.
 ```
 library(devtools)
 install_github(repo = "shijiew97/NetNPMLE")
