@@ -77,7 +77,7 @@
 #'     mu_prob[i] <- sum( net_npmle$prob[net_npmle$support[,1]==mu_support[i]] )
 #'     sigma_prob[i] <- sum( net_npmle$prob[net_npmle$support[,2]==sig_support[i]] )
 #'  }
-#' plot(mu_support, mu_prob, col=rgb(1,0,0,0.8), type='l', xlim=c(-1,3),
+#' plot(mu_support, mu_prob, col=rgb(1,0,0,0.8), type='l', xlim=c(-3,4),
 #'      xlab='support', ylab='mass', lwd=3, ylim=c(0,0.35), cex.axis=1.85, cex.lab=1.85)
 #' lines(sig_support, sigma_prob, col=rgb(0,0,1,0.8), type='l', lwd=3, lty=2)
 #' legend(x=2.0, y=0.385, c(expression(mu),expression(sigma^2)),
