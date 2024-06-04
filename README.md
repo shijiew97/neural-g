@@ -1,11 +1,11 @@
 # neural-g
-An R package for implementing Neural-Network based g-modeling, neural_g in short.
+An R package for implementing neural-g, a neural network-based approach for g-modeling, or mixing density estimation in a latent variable model.
 
 ## Abstract 
-neural_g is a flexible nonparametric maxium likelihood estimator (NPMLE) based on deep neural network for latent mixture model. neural_g is free of tuning hyperparameters and is capable of estimating a smooth or shapely discrete shape of latent distribution.
+Neural-g is a flexible neural network-based approach for estimating the mixing density in a latent variable model. Neural-g is capable of estimating a variety of densities, including atomic, smooth, flat, piecewise constant, and heavy-tailed densities. Neural-g works well under default hyperparameters that do not require much tuning.
 
 ## Installation
-To run the neural_g smoothly, there are several pre-requisites needed to be installed before the R package. The main of Net-NPMLE is worte in `Python`, especially __Pytorch__ library and we strongly recommend using `CUDA` (GPU-Based tool) to train Net-NPMLE which can be accelerated a lot than using `CPU`.
+To run the neural-g smoothly, there are several pre-requisites needed to be installed before the R package. The main functions `neural_g` and `neural_g2` ar written in `Python`, namely the __Pytorch__ library. We strongly recommend using `CUDA` (GPU-Based tool) to train neural-g, which offers magnitudes of speedup over using `CPU`.
 - __Python__ 3.7 or above
 - __[Pytroch](https://pytorch.org/)__ 1.11.0 or above
 - __[NAVID CUDA](https://developer.nvidia.com/cuda-toolkit)__ 10.2 or above
@@ -19,11 +19,11 @@ install.package("devtools")
 Now, use the following code to install `neuralG` package.
 ```
 library(devtools)
-install_github(repo = "shijiew97/neural-g")
+install_github(repo = "shijiew97/neuralG")
 library(neuralG)
 ```
 ## Main function
-There are two main functions in the `Net-NPMLE` package, which is detailed specified below.
+There are two main functions in the `neuralG` package, which is detailed specified below.
 - `neural_g` aims to give out neural_g estimator in uni-variate mixture model. Currently neural_g supports mixutre models such as Gaussian-location, Poisson-mixture, Lognormal-location, Gumbel-location, Gaussian-scale, Binomial-prob.
 - `neural_g2` provides bi-variate neural_g estimator in bi-variate mixture model. Currently bi-variate neural_g supports Gaussian location-scale mixture model.
 
@@ -54,8 +54,8 @@ plot(net_g$support, net_g$prob, col=rgb(1,0,0,0.8), type='l',
      xlab='support', ylab='mass', lwd=3, ylim=c(0,0.2), cex.axis=1.85, cex.lab=1.85)
 efnpmle = deconvolveR::deconv(tau=net_g$support, X=Y, deltaAt=0, family="Normal", pDegree=5, c0=1.0)
 efnpmle20 = deconvolveR::deconv(tau=net_g$support, X=Y, deltaAt=0, family="Normal", pDegree=20, c0=0.5)
-lines(net_npmle$support, efnpmle$stats[,"g"], type="l", xlab="", ylab="", col=rgb(0,0.5,0.5), lty=1, lwd=2)
-lines(net_npmle$support, efnpmle20$stats[,"g"], type="l", xlab="", ylab="", col=rgb(0,0,1), lty=1, lwd=2)
+lines(net_g$support, efnpmle$stats[,"g"], type="l", xlab="", ylab="", col=rgb(0,0.5,0.5), lty=1, lwd=2)
+lines(net_g$support, efnpmle20$stats[,"g"], type="l", xlab="", ylab="", col=rgb(0,0,1), lty=1, lwd=2)
 legend("topright", c("nueral_g","Efron(5)","Efron(20)"),
         col=c(rgb(1,0,0),rgb(0,0.5,0.5),rgb(0,0,1)), lty=c(1,1,1),
         lwd=c(3,2,2,2,2), bty="n", cex=1.0, x.intersp=0.8, y.intersp=0.8)
