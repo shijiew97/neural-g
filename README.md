@@ -2,7 +2,7 @@
 An R package for implementing neural-g, a neural network-based approach for g-modeling, or mixing density estimation in a latent variable model.
 
 ## Abstract 
-Neural-g is a flexible neural network-based approach for estimating the mixing density in a latent variable model. Neural-g is capable of estimating a variety of densities, including atomic, smooth, flat, piecewise constant, and heavy-tailed densities. Neural-g works well under default hyperparameters that do not require much tuning.
+Neural-g is a flexible neural network-based approach for estimating the mixing density in a latent variable model. Neural-g is capable of estimating a variety of densities, including atomic, smooth, flat, piecewise constant, and heavy-tailed densities. Neural-g works well under default hyperparameters that do not require additional tuning.
 
 ## Installation
 To run the neural-g smoothly, there are several pre-requisites needed to be installed before the R package. The main functions `neural_g` and `neural_g2` ar written in `Python`, namely the __Pytorch__ library. We strongly recommend using `CUDA` (GPU-Based tool) to train neural-g, which offers magnitudes of speedup over using `CPU`.
