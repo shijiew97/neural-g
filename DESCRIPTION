@@ -1,10 +1,10 @@
-Package: NetNPMLE
+Package: neuralG
 Type: Package
-Title: Net-NPMLE
+Title: neural_g
 Version: 0.1.0
 Author: Shijie Wang
 Maintainer: Shijie Wang <shijiew.usc@gmail.com>
-Description: Net-NPMLE for flexible nonparameteric maximum likelihood estimation
+Description: neural_g for flexible nonparameteric maximum likelihood estimation
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
