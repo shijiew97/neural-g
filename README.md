@@ -1,5 +1,5 @@
 # NetNPMLE
-An R package for implementing Neural-Network based g-modeling, _neural_g in short.
+An R package for implementing Neural-Network based g-modeling, neural_g in short.
 
 ## Abstract 
 neural_g is a flexible nonparametric maxium likelihood estimator (NPMLE) based on deep neural network for latent mixture model. neural_g is free of tuning hyperparameters and is capable of estimating a smooth or shapely discrete shape of latent distribution.
