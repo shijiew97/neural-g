@@ -2,10 +2,10 @@
 An R package for implementing neural-g, a neural network-based approach for g-modeling, or mixing density estimation in a latent variable model.
 
 ## Abstract 
-Neural-g is a flexible neural network-based approach for estimating the mixing density in a latent variable model. Neural-g is capable of estimating a variety of densities, including atomic, smooth, flat, piecewise constant, and heavy-tailed densities. Neural-g works well under default hyperparameters that do not require additional tuning.
+Neural-g is a flexible neural network-based approach for estimating the mixing density in a latent variable model. Neural-g is capable of estimating a variety of latent densities, including atomic, smooth, flat, piecewise constant, and heavy-tailed densities. Neural-g works well under default hyperparameters that do not require additional tuning.
 
 ## Installation
-To run the neural-g smoothly, there are several pre-requisites needed to be installed before the R package. The main functions `neural_g` and `neural_g2` ar written in `Python`, namely the __Pytorch__ library. We strongly recommend using `CUDA` (GPU-Based tool) to train neural-g, which offers magnitudes of speedup over using `CPU`.
+To run the neural-g smoothly, there are several prerequisites that need to be installed before using the R package. The main functions `neural_g` and `neural_g2` are written in `Python`, namely the __Pytorch__ library. We strongly recommend using `CUDA` (GPU-Based tool) to train neural-g, which offers magnitudes of speedup over using `CPU`.
 - __Python__ 3.7 or above
 - __[Pytroch](https://pytorch.org/)__ 1.11.0 or above
 - __[NAVID CUDA](https://developer.nvidia.com/cuda-toolkit)__ 10.2 or above
@@ -23,9 +23,9 @@ install_github(repo = "shijiew97/neuralG")
 library(neuralG)
 ```
 ## Main function
-There are two main functions in the `neuralG` package, which is detailed specified below.
-- `neural_g` aims to give out neural_g estimator in uni-variate mixture model. Currently neural_g supports mixutre models such as Gaussian-location, Poisson-mixture, Lognormal-location, Gumbel-location, Gaussian-scale, Binomial-prob.
-- `neural_g2` provides bi-variate neural_g estimator in bi-variate mixture model. Currently bi-variate neural_g supports Gaussian location-scale mixture model.
+There are two main functions in the `neuralG` package, which are detailed below.
+- `neural_g` gives the neural-g estimator for a univariate mixture model. Currently `neural_g` supports the following mixture models: Gaussian-location, Poisson-mixture, Lognormal-location, Gumbel-location, Gaussian-scale, Binomial-prob.
+- `neural_g2` gives the bivariate neural-g estimator for a bivariate mixture model. Currently `neural_g2` supports Gaussian location-scale mixture model.
 
 #### Example (1) : Lognormal-location (Beta) mixture.
 As a simple example of `neuralG` pacakge, we consider a Lognorm-location mixture: $\mathbf{Y} \mid \theta \sim \text{Log-normal}(\theta, 1/5) \text{ and }  \theta \sim \text{Beta}(3,2)$ where latent distribution follows $\text{Beta}(3,2)$ have a support of $[0,1]$ and $n=2,000$.
@@ -64,7 +64,7 @@ legend("topright", c("nueral_g","Efron(5)","Efron(20)"),
 ![Alt text](Image/gaussian-uniform.png)
 
 #### Example (3) : Bi-variate Gaussian location-scale mixture
-In this case, we explore the application of bi-variate neural_g in a Gaussion location-scale mixture model: $\pi(\mu,\sigma^2) \sim \text{Normal-inverse-gamma}(\mu=1,\sigma=1,\text{shape}=2,\text{scale}=0.5)$.
+In this case, we explore the application of bivariate neural-g in a Gaussion location-scale mixture model: $\pi(\mu,\sigma^2) \sim \text{Normal-inverse-gamma}(\mu=1,\sigma=1,\text{shape}=2,\text{scale}=0.5)$.
 
 ```{r, eval=FALSE}
 Seed <- 128783;set.seed(Seed);dist <- "Gaussian2s";param <- 0.5
