@@ -1,4 +1,4 @@
-# NetNPMLE
+# neural-g
 An R package for implementing Neural-Network based g-modeling, neural_g in short.
 
 ## Abstract 
