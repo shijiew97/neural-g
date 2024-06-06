@@ -56,7 +56,7 @@ efnpmle = deconvolveR::deconv(tau=net_g$support, X=Y, deltaAt=0, family="Normal"
 efnpmle20 = deconvolveR::deconv(tau=net_g$support, X=Y, deltaAt=0, family="Normal", pDegree=20, c0=0.5)
 lines(net_g$support, efnpmle$stats[,"g"], type="l", xlab="", ylab="", col=rgb(0,0.5,0.5), lty=1, lwd=2)
 lines(net_g$support, efnpmle20$stats[,"g"], type="l", xlab="", ylab="", col=rgb(0,0,1), lty=1, lwd=2)
-legend("topright", c("nueral_g","Efron(5)","Efron(20)"),
+legend("topright", c("neural-g","Efron(5)","Efron(20)"),
         col=c(rgb(1,0,0),rgb(0,0.5,0.5),rgb(0,0,1)), lty=c(1,1,1),
         lwd=c(3,2,2,2,2), bty="n", cex=1.0, x.intersp=0.8, y.intersp=0.8)
 ```
